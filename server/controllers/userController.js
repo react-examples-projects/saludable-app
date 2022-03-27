@@ -14,6 +14,15 @@ class UserController {
       next(err);
     }
   }
+
+  async getUsers(req, res, next) {
+    try {
+      const users = await UserService.getUsers();
+      success(res, users);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = new UserController();

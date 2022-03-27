@@ -7,5 +7,5 @@ const {
 } = require("../../helpers/validations/validations");
 
 router.post("/", validate(userSchemaValidation), userController.createUser);
-
+router.get("/", userController.getUsers);
 module.exports = router;

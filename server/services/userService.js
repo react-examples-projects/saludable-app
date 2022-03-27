@@ -1,4 +1,3 @@
-
 class UserService {
   constructor() {
     this.UserModel = require("../models/User");
@@ -11,20 +10,19 @@ class UserService {
       user.save((err, result) => {
         if (err) return reject(err);
         result = result.toObject();
-        delete result.password;
         resolve(result);
       });
     });
   }
 
+  async getUsers() {
+    const users = await this.UserModel.find({}).lean();
+    return users;
+  }
+
   async existsUser(email) {
     const user = await this.UserModel.exists({ email });
     return user;
-  }
-
-  async isEmailInUse(email) {
-    const users = await this.UserModel.find({ email }).lean();
-    return users.length > 0;
   }
 
   async getUserById(id) {
