@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Display, Text, Button } from "@geist-ui/core";
 import Vegetals from "../../../Assets/vegetals.jpg";
 import useToggle from "../../Hooks/useToggle";
@@ -6,10 +6,19 @@ import styles from "./home.module.scss";
 import FormUser from "../../Elements/FormUser";
 import cls from "classnames";
 import TableUsers from "../../Elements/TableUsers";
-import { ErrorBoundary } from "react-error-boundary";
+import { getUsers } from "../../../Helpers/api";
+import { useQuery } from "react-query";
 
 export default function Home() {
   const [isOpen, toggleIsOpen] = useToggle();
+  const { isLoading, isError, data } = useQuery("users", getUsers, {
+    enabled: isOpen,
+  });
+  const [users, setUsers] = useState(data || []);
+
+  useEffect(() => {
+    setUsers(data);
+  }, [data]);
 
   return (
     <div
@@ -37,9 +46,9 @@ export default function Home() {
 
       {isOpen && (
         <>
-          <FormUser toggleIsOpen={toggleIsOpen} />
+          <FormUser toggleIsOpen={toggleIsOpen} setUsers={setUsers} />
 
-          <TableUsers />
+          <TableUsers {...{ isLoading, isError, users, setUsers }} />
         </>
       )}
     </div>

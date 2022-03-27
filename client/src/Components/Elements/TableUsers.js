@@ -1,15 +1,11 @@
 import React from "react";
 import { Text, Table, Image } from "@geist-ui/core";
 import styles from "../Pages/Home/home.module.scss";
-import { getUsers } from "../../Helpers/api";
-import { useQuery } from "react-query";
 import { SpinnerCircular } from "spinners-react";
 import AddUserImg from "../../Assets/add_user.svg";
 import ErrorUserImg from "../../Assets/error_users.PNG";
 
-export default function TableUsers() {
-  const { isLoading, isError, data } = useQuery("users", getUsers);
-  console.log(data);
+export default function TableUsers({ isLoading, isError, users }) {
   if (isLoading)
     return (
       <div className="center" style={{ flexDirection: "column" }}>
@@ -37,7 +33,7 @@ export default function TableUsers() {
       </div>
     );
   }
-  if (!data?.length) {
+  if (!users?.length) {
     return (
       <div
         className="center"
@@ -53,7 +49,7 @@ export default function TableUsers() {
 
   return (
     <div className={styles.tableUsers}>
-      <Table data={data} className="pr-1">
+      <Table data={users} className="pr-1">
         <Table.Column prop="name" label="Nombre" />
         <Table.Column prop="age" label="Edad" />
         <Table.Column prop="email" label="Correo" />

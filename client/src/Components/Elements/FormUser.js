@@ -6,7 +6,7 @@ import ErrorText from "./ErrorText";
 import { getErrorValidation } from "../../Helpers/utils";
 import { userCreateSchema } from "../../Helpers/validations";
 
-export default function FormUser({ toggleIsOpen }) {
+export default function FormUser({ toggleIsOpen, setUsers }) {
   const createUserMutation = useMutation((user) => createUser(user));
   const [error, setError] = useState(null);
   const { setToast } = useToasts();
@@ -28,19 +28,21 @@ export default function FormUser({ toggleIsOpen }) {
 
       if (data?.ok) {
         setToast({
-          text: `El usuario ${fd.get("name")} se agrego correctamente.`,
+          text: `El usuario ${obj.name} se agrego correctamente.`,
           type: "success",
-          delay: 1000,
+          delay: 4000,
         });
+
+        setUsers((users) => setUsers([...users, obj]));
       } else {
         setToast({
           text: `Error al agregar el usuario.`,
           type: "error",
-          delay: 1000,
+          delay: 4000,
         });
       }
     } catch (err) {
-      console.log(err.name);
+      console.log(err);
       if (err.name === "ValidationError") setError(err.message);
     }
   };
