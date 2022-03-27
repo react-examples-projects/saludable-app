@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 1.5rem;
+  margin: 0 auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-gray {
+  color: rgb(71, 85, 105);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.295);
+  border-radius: 4px;
+}
+
