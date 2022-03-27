@@ -40,8 +40,8 @@ export default function FormUser({ toggleIsOpen }) {
         });
       }
     } catch (err) {
-      console.log(err);
-      setError(err.message);
+      console.log(err.name);
+      if (err.name === "ValidationError") setError(err.message);
     }
   };
 
@@ -120,6 +120,7 @@ export default function FormUser({ toggleIsOpen }) {
               auto
               htmlType="submit"
               disabled={createUserMutation.isLoading}
+              loading={createUserMutation.isLoading}
             >
               Aceptar
             </Button>

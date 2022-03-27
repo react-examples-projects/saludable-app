@@ -12,6 +12,7 @@ export const userCreateSchema = yup.object({
     .required("El correo es obligatorio"),
   age: yup
     .number()
+    .typeError('La edad debe ser un número')
     .min(1, "La edad debe estar entre 1-100")
     .max(100, "La edad debe estar entre 1-100")
     .required("La edad es obligatoria"),
