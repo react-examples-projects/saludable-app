@@ -13,5 +13,5 @@ export function LazyComponent({
 }
 
 export default function Async(component, loader = <LoaderPage />) {
-  return () => <LazyComponent component={component}/>;
+  return () => <LazyComponent component={component} loader={loader} />;
 }
