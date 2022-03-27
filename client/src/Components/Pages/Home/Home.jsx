@@ -6,6 +6,7 @@ import styles from "./home.module.scss";
 import FormUser from "../../Elements/FormUser";
 import cls from "classnames";
 import TableUsers from "../../Elements/TableUsers";
+import { ErrorBoundary } from "react-error-boundary";
 
 export default function Home() {
   const [isOpen, toggleIsOpen] = useToggle();
