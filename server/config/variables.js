@@ -14,7 +14,7 @@ const SERVER = {
     ALLOWED_DOMAINS: [
       "http://127.0.0.1:3000",
       "http://localhost:3000",
-      "https://mern-template-ruddy.vercel.app",
+      "https://saludable-nine.vercel.app",
     ],
     RATE_LIMITS: {
       windowMs: 10 * 60 * 1000, // 10 minutes
